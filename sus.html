@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Story ❤️</title>
+
+<style>
+body{margin:0;font-family:Segoe UI,Arial;background:linear-gradient(#0b1a3a,#000);color:#fff;overflow-x:hidden}
+.title{text-align:center;padding:30px 0;position:relative;z-index:2}
+
+.timeline{max-width:1100px;margin:0 auto;padding:40px 0;position:relative;z-index:2}
+
+.container{
+width:45%;
+padding:20px 25px;
+margin:40px 0;
+background:rgba(255,255,255,.08);
+border-radius:14px;
+cursor:pointer;
+transition:.25s;
+position:relative
+}
+.container:nth-child(odd){left:0}
+.container:nth-child(even){left:55%}
+
+.container:hover{transform:scale(1.05);background:rgba(255,255,255,.18)}
+
+.event-title{font-weight:bold;color:#ffd86b}
+
+/* Hearts */
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.heart{position:absolute;top:-20px;font-size:20px;animation:fall linear infinite}
+@keyframes fall{
+0%{transform:translateY(-10vh) rotate(0deg);opacity:1}
+100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+/* Popup */
+.popup{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:3}
+.popup.show{display:flex}
+
+.memory-content{
+display:flex;
+gap:40px;
+max-width:1100px;
+padding:30px;
+background:#000;
+border-radius:18px;
+align-items:center
+}
+
+.memory-text{
+width:35%;
+line-height:1.8;
+font-size:17px
+}
+
+#memory-image{
+width:350px;
+max-height:80vh;
+object-fit:contain;
+border-radius:18px;
+box-shadow:0 0 25px rgba(255,255,255,.4)
+}
+
+.close{position:absolute;top:20px;right:30px;font-size:35px;cursor:pointer}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+<h1 class="title">❤️HAPPY VALENTINE'S DAY AZHAGI❤️</h1>
+<h1 class="title">✨Our Journey Together🥰🥰</h1>
+
+<div class="timeline">
+
+<div class="container"
+data-img="images/k1.jpeg"
+data-text="Pooja na unna sports day la patha apo aana feel enaku idhuvarikum aanadhu illa 🫠🫠 Inimelum agathunu therium 😹 Na school days laiye romba happy ana nal na adhu andha sports day tha 🥰😌 Aniku enaku unna neraiya vaati sight adika time kedaichuthu 🤭 Apram break poitu varumbothu unna pakanum nu nenachite vandhen Adhemari unaiyum pathen andha facela cheek la iruka machatha pathathula irundhu unmela paithiyamave aiten 🙈😅">
+<h2>21 JAN 2024</h2>
+<p class="event-title">💬✨ First Chat ✨💬</p>
+</div>
+
+<div class="container"
+data-img="images/k2.jpeg"
+data-text="Namaku public exam irundhadhala unna disturb panna kudathunu silent ah ve irundhuten 🥲🥲 Exam mudichitu last aniku nee unga anna kuda poitu irundha apo kuda enna kandukave illa 😿😿 Apram romba naal ah unna paaka mudila nu romba engitu irundhen Apram tha samiye oru chance kudutha maari nee tailoring class ku pore nu kelvi paten 🤭 Apram unna pala situation kapram thenari thittu thadumari epdiyo propose panniten 😹🤭🙈🙈💘">
+<h2>18 APR 2024</h2>
+<p class="event-title">💍❤️ My Proposal ❤️</p>
+</div>
+
+<div class="container"
+data-img="images/k3.jpeg"
+data-text="Na unkuda friend ah ve irukalamnu tha irundhen But enoda oru chinna edathula unna love panni kalyanam pannanum nu aasa irundhadhu 😹🤭🤭 Apram unkuda friend ah nalla pesitu irundhen 🙈🙈 Thideerrnu neeye enna love panna enna pannuvanu enna ketiya 🤭🤭 na stun aiten Apram enoda feelings control panna mudiyama marunale unkita thirumba ok soliten 🙈🙈✨🫂🥰😹">
+<h2>22 AUG 2025</h2>
+<p class="event-title">🌸💌 Your Proposal 💌🌸</p>
+</div>
+
+<div class="container"
+data-img="images/k4.jpeg"
+data-text="Namma ivlo close irupom nu enoda 12th jeeva kitta soli irundha nambi irukave matan 🙈🤭 Na unoda kai pudichi iruken day fulla 🙈🫠 Unkuda veetuku theriyama veliye vandhu iruken 🥰🙈 Na unna epdi patheno adhe mari enoda midhi life fulla pakanum nu aasai 🫠 Unkuda life fulla nadakanum nu asa paduren 🫠✨ Enkuda irupiya 🫠">
+<h2>9 FEB 2026</h2>
+<p class="event-title">🌹🥂 Our First Date 🥂🌹</p>
+</div>
+
+</div>
+
+<div id="popup" class="popup">
+<span class="close" onclick="closePopup()">×</span>
+<div class="memory-content">
+<div class="memory-text" id="memory-left"></div>
+<img id="memory-image">
+<div class="memory-text" id="memory-right"></div>
+</div>
+</div>
+
+<script>
+const cards=document.querySelectorAll('.container');
+
+cards.forEach(card=>{
+card.onclick=()=>{
+const img=card.dataset.img;
+const text=card.dataset.text;
+
+const words=text.split(' ');
+const mid=Math.ceil(words.length/2);
+
+document.getElementById('memory-left').innerText=words.slice(0,mid).join(' ');
+document.getElementById('memory-right').innerText=words.slice(mid).join(' ');
+document.getElementById('memory-image').src=img;
+document.getElementById('popup').classList.add('show');
+}
+});
+
+function closePopup(){document.getElementById('popup').classList.remove('show')}
+
+/* Hearts */
+const heartContainer=document.getElementById('hearts');
+function createHeart(){
+const heart=document.createElement('div');
+heart.classList.add('heart');
+heart.innerHTML=Math.random()>0.5?'💛':'💙';
+heart.style.left=Math.random()*100+'vw';
+heart.style.animationDuration=(3+Math.random()*5)+'s';
+heart.style.fontSize=(15+Math.random()*25)+'px';
+heartContainer.appendChild(heart);
+setTimeout(()=>heart.remove(),8000);
+}
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
